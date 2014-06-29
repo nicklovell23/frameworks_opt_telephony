@@ -52,7 +52,7 @@ public class SpnOverride {
     }
 
     private void loadSpnOverrides() {
-        FileReader spnReader;
+        FileReader spnReader = null;;
 
         final File spnFile = new File(Environment.getRootDirectory(),
                 PARTNER_SPN_OVERRIDE_PATH);
@@ -88,6 +88,13 @@ public class SpnOverride {
             Rlog.w(LOG_TAG, "Exception in spn-conf parser " + e);
         } catch (IOException e) {
             Rlog.w(LOG_TAG, "Exception in spn-conf parser " + e);
+        } finally {
+            if (spnReader != null)
+                try {
+                    spnReader.close();
+                } catch (java.io.IOException ioe) {
+                    // at least we tried
+                }
         }
     }
 
