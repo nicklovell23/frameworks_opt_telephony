@@ -1570,8 +1570,7 @@ public abstract class DcTrackerBase extends Handler {
                 NUMBER_SENT_PACKETS_OF_HANG);
 
         boolean suspectedStall = DATA_STALL_NOT_SUSPECTED;
-        if (mSentSinceLastRecv >= hangWatchdogTrigger ||
-            (mSentSinceLastRecv > 0 && getRecoveryAction() != RecoveryAction.GET_DATA_CALL_LIST) ) {
+        if (mSentSinceLastRecv >= hangWatchdogTrigger) {
             if (DBG) {
                 log("onDataStallAlarm: tag=" + tag + " do recovery action=" + getRecoveryAction());
             }
